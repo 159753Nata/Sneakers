@@ -1,27 +1,38 @@
+import Card from "./Component/Card";
+import Drawer from "./Component/Drawer";
+import React from 'react';
 
-import Card from "./Component/Card"
+
+
+const sneakersArr = [
+  {
+    title: 'Мужские Кроссовки Nike Blazer Mid Suede',
+    price: 12999,
+    imageUrl: '/img/sneakers/1.png',
+  },
+  { title: 'Мужские Кроссовки Nike Air Max 270', price: 15600, imageUrl: '/img/sneakers/2.png' },
+  {
+    title: 'Мужские Кроссовки Nike Blazer Mid Suede',
+    price: 8499,
+    imageUrl: '/img/sneakers/3.png',
+  },
+  {
+    title: 'Кроссовки Puma X Aka Boku Future Rider',
+    price: 8999,
+    imageUrl: '/img/sneakers/4.png',
+  },
+];
+
 function App() {
-  const sneakersArr = [
-    {
-      title: 'Мужские Кроссовки Nike Blazer Mid Suede',
-      price: 12999,
-      imageUrl: '/img/sneakers/1.png',
-    },
-    { title: 'Мужские Кроссовки Nike Air Max 270', price: 15600, imageUrl: '/img/sneakers/2.png' },
-    {
-      title: 'Мужские Кроссовки Nike Blazer Mid Suede',
-      price: 8499,
-      imageUrl: '/img/sneakers/3.png',
-    },
-    {
-      title: 'Кроссовки Puma X Aka Boku Future Rider',
-      price: 8999,
-      imageUrl: '/img/sneakers/4.png',
-    },
-  ];
-  
-    
-    
+
+  React.useEffect (()=>{
+    console.log(1111) 
+  })
+  const [isVisible, setIsVisible] = React.useState(true); //отслеживаем состояние корзины
+
+  const [drawerItems, setDrawerItems] = React.useState([]);
+
+
   return (
     <div className="wrapper">
       <header>
@@ -33,7 +44,7 @@ function App() {
           </div>
         </div>
         <ul>
-          <li>
+          <li className="cursor" onClick={() => setIsVisible(!isVisible)}>
             <img width={18} height={18} src="/img/cart.png" />
             <span>1205 руб.</span>
           </li>
@@ -46,53 +57,9 @@ function App() {
           </li>
         </ul>
       </header>
-  
 
-
-
-          <div style = {{display: "none"}}  className="overlay">
-      <div className="drawer">
-        <h2>
-          Корзина <img className="cu-p" src="./img/btn-remove.png" alt="Remove" />
-        </h2>
-
-        <div className="items">
-          <div className="cartItem">
-            <div
-              style={{ backgroundImage: 'url(/img/sneakers/1.png)' }}
-              className="cartItemImg"></div>
-
-            <div className="cartText">
-              <p>Мужские Кроссовки Nike Air Max 270</p>
-              <b>12 999 руб.</b>
-            </div>
-            <img className="removeBtn" src="/img/btn-remove.png" alt="Remove" />
-          </div>
-
-        </div>
-
-        <div className="cartTotalBlock">
-          <ul>
-            <li>
-              <span>Итого:</span>
-              <div></div>
-              <b>21 498 руб. </b>
-            </li>
-            <li>
-              <span>Налог 5%:</span>
-              <div></div>
-              <b>1074 руб. </b>
-            </li>
-          </ul>
-          <button className="greenButton">
-            Оформить заказ <img src="/img/arrow.png" alt="Arrow" />
-          </button>
-        </div>
-      </div>
-    </div>
-
-
-
+      <Drawer drawerItems={drawerItems} isVisible={isVisible} setIsVisible={setIsVisible} />
+     
       <div className="content">
             <h1>Все кроссовки</h1>
             <div className="search-block">
@@ -100,19 +67,13 @@ function App() {
                 <input placeholder="Поиск..." />
             </div>
           
-        <div className="ds-f"> 
-        {sneakersArr.map((elem,index) => <Card pTitle={elem.title} pPrice={elem.price} pUrl= {elem.imageUrl} key = {index}/> )}
-
-
-
-           
-       
+        <div className="ds-f">
+           {sneakersArr.map((elem, index) => <Card pTitle={elem.title} pPrice={elem.price} 
+           pUrl={elem.imageUrl} pDrawerItems={drawerItems} pSetDrawerItems={setDrawerItems} key={index}/>) }
         </div>
-        </div>
-
-        </div>
-   );
-   }
-
+      </div>
+    </div>
+  );
+}
 
 export default App;

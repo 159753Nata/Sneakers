@@ -221,6 +221,12 @@ li {
   margin-bottom: 30px;
 }
 
+.cursor{
+
+  cursor: pointer;
+}
+  
+
 .cartTotalBlock ul{
   display: block;
   margin-bottom: 40px !important;
