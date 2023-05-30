@@ -176,14 +176,24 @@ li {
   outline:none;
 }
 
-.search-block img{
+.search-block .searchImage{
   width: 18px;
   height: 18px;
   position: absolute;
   top:30%;
   left:3px;
+  cursor: pointer;
 }
 
+.cross {
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  top:30%;
+  right:3px;
+  opacity: 0.5;
+  cursor: pointer;
+}
 
 .overlay {
   position:fixed;
@@ -248,7 +258,10 @@ li {
 
 }
 
-
+ .link{
+  color: black;
+  text-decoration-line: none ;
+ }
 
 
 .greenButton {
@@ -332,4 +345,7 @@ li {
 
 .cartText p{
   margin-bottom: 5px;
+}
+.display-none {
+display: none;
 }
